@@ -6,8 +6,8 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { transformToComponentProps, textDefaultProps, textStylePropNames } from '../defaultProps'
-import useComponentCommon from '../hooks/useComponentCommon'
+import { transformToComponentProps, textDefaultProps, textStylePropNames } from '../../defaultProps'
+import useComponentCommon from '../../hooks/useComponentCommon'
 
 const defaultProps = transformToComponentProps(textDefaultProps)
 
@@ -16,17 +16,17 @@ export default defineComponent({
   props: {
     tag: {
       type: String,
-      default: 'div',
+      default: 'div'
     },
-    ...defaultProps,
+    ...defaultProps
   },
   setup(props) {
     const { styleProps, handleClick } = useComponentCommon(props, textStylePropNames)
     return {
       styleProps,
-      handleClick,
+      handleClick
     }
-  },
+  }
 })
 </script>
 
