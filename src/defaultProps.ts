@@ -49,7 +49,7 @@ export const commonDefaultProps: CommonComponentProps = {
   position: 'absolute',
   left: '0',
   top: '0',
-  right: '0',
+  right: '0'
 }
 
 export interface TextComponentProps extends CommonComponentProps {
@@ -81,16 +81,21 @@ export const textDefaultProps: TextComponentProps = {
   textAlign: 'left',
   color: '#000000',
   backgroundColor: '',
-  ...commonDefaultProps,
+  ...commonDefaultProps
 }
 
 export const imageDefaultProps: ImageComponentProps = {
   src: 'test.url',
-  ...commonDefaultProps,
+  ...commonDefaultProps
 }
 
 // 剔除掉不包含在 style 中的 key
-export const textStylePropNames = without(Object.keys(textDefaultProps), 'actionType', 'url', 'text')
+export const textStylePropNames = without(
+  Object.keys(textDefaultProps),
+  'actionType',
+  'url',
+  'text'
+)
 
 export const imageStylePropsNames = without(Object.keys(imageDefaultProps), 'src')
 
@@ -101,6 +106,6 @@ export const transformToComponentProps = <T extends {}>(props: T) => {
     // type: String
     // 要指代这个 String 类型我们就要使用这个 StringConstuctor
     type: (item as any).constructor as StringConstructor,
-    default: item,
+    default: item
   }))
 }

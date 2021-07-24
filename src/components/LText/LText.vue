@@ -16,17 +16,17 @@ export default defineComponent({
   props: {
     tag: {
       type: String,
-      default: 'div'
+      default: 'div',
     },
-    ...defaultProps
+    ...defaultProps,
   },
   setup(props) {
     const { styleProps, handleClick } = useComponentCommon(props, textStylePropNames)
     return {
       styleProps,
-      handleClick
+      handleClick,
     }
-  }
+  },
 })
 </script>
 
