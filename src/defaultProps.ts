@@ -1,5 +1,4 @@
 import { mapValues, without } from 'lodash-es'
-
 export interface CommonComponentProps {
   // actions
   actionType: string
@@ -25,7 +24,6 @@ export interface CommonComponentProps {
   top: string
   right: string
 }
-
 export const commonDefaultProps: CommonComponentProps = {
   // actions
   actionType: '',
@@ -49,9 +47,8 @@ export const commonDefaultProps: CommonComponentProps = {
   position: 'absolute',
   left: '0',
   top: '0',
-  right: '0'
+  right: '0',
 }
-
 export interface TextComponentProps extends CommonComponentProps {
   text: string
   fontSize: string
@@ -64,11 +61,12 @@ export interface TextComponentProps extends CommonComponentProps {
   color: string
   backgroundColor: string
 }
-
 export interface ImageComponentProps extends CommonComponentProps {
   src: string
 }
-
+export interface ShapeComponentProps extends CommonComponentProps {
+  backgroundColor: string
+}
 export const textDefaultProps: TextComponentProps = {
   // basic props - font styles
   text: '正文内容',
@@ -81,31 +79,41 @@ export const textDefaultProps: TextComponentProps = {
   textAlign: 'left',
   color: '#000000',
   backgroundColor: '',
-  ...commonDefaultProps
+  ...commonDefaultProps,
 }
-
 export const imageDefaultProps: ImageComponentProps = {
   src: 'test.url',
-  ...commonDefaultProps
+  ...commonDefaultProps,
 }
-
-// 剔除掉不包含在 style 中的 key
+export const shapeDefaultProps: ShapeComponentProps = {
+  backgroundColor: '',
+  ...commonDefaultProps,
+}
+export const isEditingProp = {
+  isEditing: {
+    type: Boolean,
+    default: false,
+  },
+}
 export const textStylePropNames = without(
   Object.keys(textDefaultProps),
   'actionType',
   'url',
   'text'
 )
-
-export const imageStylePropsNames = without(Object.keys(imageDefaultProps), 'src')
-
-// 返回出去的结构类似于：{ text: { type: String, default: '正文内容' } }
+export const imageStylePropsNames = without(
+  Object.keys(imageDefaultProps),
+  'actionType',
+  'url',
+  'src'
+)
+export const shapeStylePropsNames = without(Object.keys(imageDefaultProps), 'actionType', 'url')
 export const transformToComponentProps = <T extends {}>(props: T) => {
-  return mapValues(props, (item) => ({
-    // 在 vue 的 props 的定义中，我们需要用 String 来定义一个属性的类型
-    // type: String
-    // 要指代这个 String 类型我们就要使用这个 StringConstuctor
-    type: (item as any).constructor as StringConstructor,
-    default: item
-  }))
+  const mapProps = mapValues(props, (item) => {
+    return {
+      type: (item as any).constructor as StringConstructor,
+      default: item,
+    }
+  })
+  return { ...mapProps, ...isEditingProp }
 }
