@@ -2,6 +2,9 @@
   "name": "xcm-component",
   "version": "1.0.0",
   "private": true,
+  "main": "dist/xcm-component.umd.js",
+  "module": "dist/xcm-component.esm.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "npm run clean && npm run build:esm && npm run build:umd",
