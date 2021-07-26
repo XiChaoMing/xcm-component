@@ -1,6 +1,11 @@
 language: node_js
 node_js:
-  - stable
-cache:
-  directories:
-    - node_modules
+  - node
+deploy:
+  provider: npm
+  email: 15061936820@163.com
+  skip_cleanup: true
+  api_key:
+    secure: NSXnl646VjA8iIBjh21ZX7g6IjljBsKKIc8zyi/YoV1lmRcijehDhs4EkoeW9O2OVwG276+4Uc4Z7na/7TxZxYYNy/7789cDc2nnw612K6rtuCw4DWzJIJeAQza53vR3g1LyKj+5s0p5cttFd8eBVP+7D5WYd7HIv4EzTQOnTY67YKlqd9TuN566E/vOqHl3XarQyC1k9Bv3g06ZazNHlCHIFACATU372cDOE+qo85XtdX82BoiUZ6WmRD/A7o0tZlwHV6Yy83VSINiPKjG/0RI+Xl6HQ1eDV4dOkMJfsw8xVrnkWJD3c1oYIB6KUIO2dY9H6eRkXm5zVLytzUJdsjdFyLzGGctaYmwgdz+WeEPqJIOZAOF/LQ1pKiWiqvVdw2kjEGiB9htruoFGbkg4Unzs0Z09d7BkmjvJskrN3Lmrvz0IJaGPD8LgEka7JCMMeRcEMDP7iqEef6ntAY6WjOVkmXa5xSfATLJopvdm7gZsx18ScOXl8LUmz693Bs6QkRE50sRwJzQl69JQUROnri29mOMh7EL4hTgL0CCtMpANUNBkXgmdsaPx/GfVRomUfUNud/aLAfJMUM980zULb/TmUR81arU08hPwkvxG6BiSLCV4qZIx0Q+d+vqlf52WmO6Rzmgw+Rulcge1q1kFlfWBVT0YxJ36VzxkPpK15ng=
+  on:
+    tags: true
